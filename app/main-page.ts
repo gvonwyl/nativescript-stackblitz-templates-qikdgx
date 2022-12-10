@@ -1,6 +1,6 @@
-import { EventData, Page, ItemEventData } from '@nativescript/core';
+import { EventData, Page, ItemEventData, SwipeGestureEventData } from '@nativescript/core';
 import { TodoViewModel } from './todo-view-model';
-
+import {SwipeDirection} from '@nativescript/core/ui/gestures';
 let model;
 let page;
 
@@ -15,3 +15,12 @@ export function remove(args: ItemEventData) {
   const listView= page.getViewById("listView");
   listView.refresh();
   }
+
+export function reload(args: SwipeGestureEventData) {
+  console.log('swipe')  ;
+  if(args.direction=== SwipeDirection.down) {
+      model.reset();
+      const listView= page.getViewById("listView");
+      listView.refresh();
+      }
+    }
